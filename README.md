@@ -1,11 +1,10 @@
 # GoMemIO
-A GoLang experiment to create a TCP server to store key/value pairs in memory.
-Think on a REDIS.
+A GoLang experiment to create a TCP server to store key/value pairs in memory (much REDIS like).
 
-## Commands
+## Commands
 Basic commands to read/write values on Memory:
 
-### Write values
+### Write values
 ```bash
 SET max 100
 > OK
