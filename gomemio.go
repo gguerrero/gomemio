@@ -4,7 +4,8 @@ import (
 	"fmt"
 	"log"
 	"net"
-	"time"
+
+	"github.com/gguerrero/gomemio/service"
 )
 
 type port uint16
@@ -15,8 +16,6 @@ type server struct {
 
 const (
 	network = "tcp"
-	// TCP requests default timeout.
-	timeout = time.Second * 10
 )
 
 func NewServer(a string, p int) *server {
@@ -34,7 +33,7 @@ func (s *server) ListenAndServe() error {
 		return err
 	}
 
-	return NewListener(li).Handle()
+	return service.NewHandler(li).Handle()
 }
 
 func (s *server) String() string {
