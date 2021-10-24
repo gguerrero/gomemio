@@ -2,28 +2,26 @@ package commands
 
 import (
 	"fmt"
-
-	"github.com/gguerrero/gomemio/data"
 )
 
-var dataStore *data.DataStore
+var ds dataStore
 
 func init() {
-	dataStore = data.NewDataStore()
+	ds = loadDataStore()
 }
 
 func (cmd *command) Execute() (string, error) {
 	switch cmd.action {
 	case GET:
-		return dataStore.Find(cmd.key), nil
+		return ds.Find(cmd.key), nil
 	case SET:
-		dataStore.Add(cmd.key, cmd.value)
+		ds.Add(cmd.key, cmd.value)
 		return "OK", nil
 	case DEL:
-		dataStore.Delete(cmd.key)
+		ds.Delete(cmd.key)
 		return "DELETED", nil
 	case LIST:
-		data := dataStore.List()
+		data := ds.List()
 		return fmt.Sprint(data), nil
 	default:
 		return "", fmt.Errorf("commands excute: cannot excute action %d", cmd.action)
