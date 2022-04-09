@@ -16,6 +16,7 @@ func init() {
 }
 
 func main() {
+	flag.Parse()
 	s := gomemio.NewServer(*address, *port)
 	if err := s.ListenAndServe(); err != nil {
 		log.Fatal(err)
